@@ -20,6 +20,7 @@
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
+    "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-session": "^1.18.2",
     "http-status-codes": "^2.3.0",
@@ -27,14 +28,21 @@
     "mongoose": "^8.18.1",
     "nodemailer": "^7.0.6",
     "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0",
     "zod": "^4.1.8"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.9",
     "@types/cors": "^2.8.19",
+    "@types/ejs": "^3.1.5",
     "@types/express": "^5.0.3",
     "@types/express-session": "^1.18.2",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/nodemailer": "^7.0.1",
     "@types/passport": "^1.0.17",
+    "@types/passport-google-oauth20": "^2.0.16",
+    "@types/passport-local": "^1.0.38",
     "ts-node-dev": "^2.0.0"
   }
 }

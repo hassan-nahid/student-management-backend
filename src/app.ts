@@ -4,7 +4,7 @@ import express, { Request, Response } from 'express';
 import cookieParser from "cookie-parser";
 import passport from "passport";
 import expressSession from "express-session"
-// import "./app/config/passport"
+import "./app/config/passport"
 import { envVars } from "./app/config/env";
 import { router } from "./app/routers";
 import { globalErrorHandler } from "./app/middleware/globalErrorHandler";
@@ -35,7 +35,7 @@ app.use("/api/v1", router)
 
 app.get("/", (req: Request, res: Response) => {
     res.status(200).json({
-        message: "Welcome to the tour management system"
+        message: "Your System hacked!"
     })
 })
 

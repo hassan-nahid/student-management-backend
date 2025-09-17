@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your OTP Code</title>
+  <style>
+    body {
+      background-color: #f6f9fc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #ffffff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+    h2 {
+      color: #2c3e50;
+      font-weight: 600;
+    }
+    .otp-box {
+      font-size: 28px;
+      font-weight: bold;
+      background: #f0f4f8;
+      padding: 15px 25px;
+      text-align: center;
+      border-radius: 8px;
+      margin: 20px 0;
+      letter-spacing: 2px;
+      color: #34495e;
+      border: 2px dashed #3498db;
+    }
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 13px;
+      text-align: center;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Hello <%= name %>,</h2>
+    <p>Use the OTP code below to complete your verification:</p>
+
+    <div class="otp-box">
+      <%= otp %>
+    </div>
+
+    <p>This code is valid for <strong>2 minutes</strong>. Please do not share it with anyone.</p>
+    
+    <p>If you didn’t request this, you can ignore this message.</p>
+
+    <div class="footer">
+      &copy; <%= new Date().getFullYear() %> Your Company Name. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

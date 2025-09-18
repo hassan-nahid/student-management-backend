@@ -15,6 +15,56 @@ const createPlan = catchAsync(async (req: Request, res: Response) => {
     });
 })
 
+
+const getAllPlans = catchAsync(async (req: Request, res: Response) => {
+    const result = await planServices.getAllPlans();
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Plans fetched successfully",
+        data: result,
+    });
+});
+
+const getPlanById = catchAsync(async (req: Request, res: Response) => {
+    const result = await planServices.getPlanById(req.params.id);
+    if (!result) {
+        return sendResponse(res, {
+            statusCode: httpStatus.NOT_FOUND,
+            success: false,
+            message: "Plan not found",
+            data: null
+        });
+    }
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Plan fetched successfully",
+        data: result,
+    });
+});
+
+const updatePlan = catchAsync(async (req: Request, res: Response) => {
+    const result = await planServices.updatePlan(req.params.id, req.body);
+    if (!result) {
+        return sendResponse(res, {
+            statusCode: httpStatus.NOT_FOUND,
+            success: false,
+            message: "Plan not found",
+            data: null
+        });
+    }
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Plan updated successfully",
+        data: result,
+    });
+});
+
 export const planControllers = {
     createPlan,
+    getAllPlans,
+    getPlanById,
+    updatePlan,
 };

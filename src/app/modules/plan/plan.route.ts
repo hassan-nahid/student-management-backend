@@ -13,8 +13,8 @@ router.post("/",
     checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
     validateRequest(planValidationSchema),
     planControllers.createPlan)
-// router.get("/",  planControllers.getAllPlans)
-// router.get("/:id",  planControllers.getPlanById)
-// router.patch("/:id", checkAuth(Role.ADMIN, Role.SUPER_ADMIN), planControllers.updatePlan)
+router.get("/",  planControllers.getAllPlans)
+router.get("/:id",  planControllers.getPlanById)
+router.patch("/:id", checkAuth(Role.ADMIN, Role.SUPER_ADMIN), planControllers.updatePlan)
 
 export const PlanRoutes = router

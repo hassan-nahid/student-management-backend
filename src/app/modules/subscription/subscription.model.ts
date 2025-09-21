@@ -13,6 +13,11 @@ const subScriptionSchema = new Schema<ISubscription>(
             ref: "User",
             required: true
         },
+        payment: {
+            type: Schema.Types.ObjectId,
+            ref: "Payment",
+            required: false,
+        },
         startDate: {
             type: Date,
             required: true,

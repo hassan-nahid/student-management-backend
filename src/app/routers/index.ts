@@ -4,6 +4,7 @@ import { AuthRoutes } from "../modules/auth/auth.route";
 import { OtpRoutes } from "../modules/otp/otp.route";
 import { PlanRoutes } from "../modules/plan/plan.route";
 import { SubscriptionRoute } from "../modules/subscription/subscription.route";
+import { PaymentRoutes } from "../modules/payment/payment.route";
 
 
 export const router = Router()
@@ -28,6 +29,10 @@ const moduleRoutes = [
     {
         path: "/subscription",
         route: SubscriptionRoute
+    },
+    {
+        path: "/payment",
+        route: PaymentRoutes
     },
    
 

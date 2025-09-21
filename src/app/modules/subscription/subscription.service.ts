@@ -1,6 +1,10 @@
 import AppError from "../../errorHelpers/AppError";
 import { getTransactionId } from "../../utils/getTransactionId";
+import { PAYMENT_STATUS } from "../payment/payment.interface";
+import { Payment } from "../payment/payment.model";
 import { Plan } from "../plan/plan.model";
+import { ISSLCommerz } from "../sslCommerz/sslCommerz.interface";
+import { SSLService } from "../sslCommerz/sslCommerz.service";
 import { User } from "../user/user.model";
 import { ISubscription, SUBSCRIPTION_Payment_STATUS } from "./subscription.interface";
 import { Subscription } from "./subscription.model";
@@ -40,13 +44,43 @@ const createSubscription = async (payload: Partial<ISubscription>, userId: strin
             endDate: endDate,
             totalCost: amount,
         }], { session })
-        // const payment = await Payment.create([{
-        //     booking: booking[0]._id,
-        //     status: PAYMENT_STATUS.UNPAID,
-        //     transactionId: transactionId,
-        //     amount: amount
-        // }], { session })
-        return subscription
+        const payment = await Payment.create([{
+            subscriptionId: subscription[0]._id,
+            status: PAYMENT_STATUS.UNPAID,
+            transactionId: transactionId,
+            amount: amount
+        }], { session })
+
+        const updatedSubscription = await Subscription.findByIdAndUpdate(subscription[0]._id, { payment: payment[0]._id },
+            { new: true, runValidators: true, session })
+            .populate("userId", "name email phone address")
+            .populate("planId", "name price")
+            .populate("payment")
+
+        const userAddress = (updatedSubscription?.userId as any).address
+        const userEmail = (updatedSubscription?.userId as any).email
+        const userPhoneNumber = (updatedSubscription?.userId as any).phone
+        const userName = (updatedSubscription?.userId as any).name
+
+        const sslPayload: ISSLCommerz = {
+            address: userAddress,
+            email: userEmail,
+            phoneNumber: userPhoneNumber,
+            name: userName,
+            amount: amount,
+            transactionId: transactionId
+        }
+
+        const sslPayment = await SSLService.sslPaymentInit(sslPayload)
+
+
+
+        await session.commitTransaction();
+        session.endSession();
+        return {
+            paymentUrl: sslPayment.GatewayPageURL,
+            subscription: updatedSubscription
+        }
 
     } catch (error) {
         await session.abortTransaction()

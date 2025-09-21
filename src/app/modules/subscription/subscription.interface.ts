@@ -17,6 +17,7 @@ export interface ISubscription {
     _id: Types.ObjectId;
     planId: Types.ObjectId;
     userId: Types.ObjectId;
+    payment: Types.ObjectId;
     startDate: Date;
     endDate: Date;
     totalMonth: number;

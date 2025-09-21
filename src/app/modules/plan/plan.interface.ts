@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import { Types } from "mongoose";
 
 export interface IPlan {
-  _id: mongoose.ObjectId;
+  _id: Types.ObjectId;
   name: "Basic" | "Plus" | "Pro";
   price: number;
   status: "active" | "inactive";

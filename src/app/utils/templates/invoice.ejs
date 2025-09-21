@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Subscription Invoice</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #333;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .info {
+      margin-bottom: 30px;
+    }
+    .info p {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+    .highlight {
+      font-weight: bold;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #777;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    .btn:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Subscription Invoice</h1>
+    
+    <div class="info">
+      <p><span class="highlight">Name:</span> <%= userName %></p>
+      <p><span class="highlight">Plan Name:</span> <%= planName %></p>
+      <p><span class="highlight">Subscription Date:</span> <%= subscriptionDate.toDateString() %></p>
+      <p><span class="highlight">End Date:</span> <%= endDate.toDateString() %></p>
+      <p><span class="highlight">Total Amount:</span> <%= totalAmount.toFixed(2) %> BDT</p>
+      <p><span class="highlight">Transaction ID:</span> <%= transactionId %></p>
+    </div>
+
+    <p>Thank you for subscribing! We hope you enjoy our service.</p>
+
+    <div class="footer">
+      &copy; <%= new Date().getFullYear() %> Student Management System. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>
